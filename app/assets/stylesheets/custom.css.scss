@@ -1,4 +1,4 @@
- @import 'bootstrap/scss/bootstrap';
+@import 'bootstrap/scss/bootstrap';
 #logo{
     float: left;
     color: #fff;
@@ -18,7 +18,7 @@
     height: 300px;
 }
 
-.jumbotron h1, h2{
+.jumbotron h1{
     color: #fff;
     text-align: center;
     margin-bottom: 30px;
@@ -31,10 +31,27 @@
 }
 
 .btn-xlarge{
-    background-color: #555555;
+    background-color: #142b14;
     color: #fff;
 }
 
 .btn-xlarge:hover{
     color: #fff;
+}
+
+.well a{
+    color: #142b14
+}
+
+.colormatch a{
+    color: #142b14
+}
+
+.navbar-custom{
+    background-color: #142b14;
+}
+
+.panel > .panel-heading {
+    color: #142b14;
+
 }
