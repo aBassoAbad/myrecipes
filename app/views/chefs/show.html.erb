@@ -1,1 +1,10 @@
-<%= render "shared/page_title", title: "Your profile" %>
+<%= render "shared/page_title", title: "Chef #{@chef.chef_name}´s profile" %>
+
+<div class="row">
+    <div class="col-md-12 center">
+        <%= gravatar_for @chef, size: 150 %>
+    </div>
+</div>
+
+<h2 class="text-center"><%= @chef.chef_name %>'s recipes</h2>
+<%= render "recipes/recipe", obj: @chef.recipes %>
