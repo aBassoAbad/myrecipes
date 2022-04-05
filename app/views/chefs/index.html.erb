@@ -1,0 +1,17 @@
+<%= render "shared/page_title", title: "Showing all chefs" %>
+
+<div class="center list-group">
+  <% @chefs.each do |chef| %>
+    <ul class="list-group-item listing">
+      <div class="row">
+        <div class="col">
+          <li><%= link_to gravatar_for(chef), chef_path(chef) %></li>
+          <li class="chef-title"><%= link_to chef.chef_name.capitalize, 
+                                         chef_path(chef) %></li>
+          <li><small><%= pluralize(chef.recipes.count, "recipe") if chef.recipes %>
+            </small></li>
+        </div>
+      </div>
+    </ul>      
+  <% end %>
+</div>
