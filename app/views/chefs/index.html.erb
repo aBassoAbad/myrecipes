@@ -1,5 +1,5 @@
 <%= render "shared/page_title", title: "Showing all chefs" %>
-
+<%= paginate @chefs%>
 <div class="center list-group">
   <% @chefs.each do |chef| %>
     <ul class="list-group-item listing">

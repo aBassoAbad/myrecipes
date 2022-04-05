@@ -2,7 +2,7 @@ class RecipesController < ApplicationController
     before_action :set_recipe, only: [:show, :edit, :update]
 
     def index 
-        @recipes = Recipe.all
+        @recipes = Recipe.page(params[:page]).per(2)
     end
 
     def show

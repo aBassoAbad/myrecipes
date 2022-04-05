@@ -7,4 +7,6 @@
 </div>
 
 <h2 class="text-center"><%= @chef.chef_name %>'s recipes</h2>
-<%= render "recipes/recipe", obj: @chef.recipes %>
+
+<%= paginate @chef_recipes%>
+<%= render "recipes/recipe", obj: @chef_recipes %>
