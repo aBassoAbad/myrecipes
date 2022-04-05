@@ -35,6 +35,13 @@ class ChefsController < ApplicationController
             render "edit"
         end
     end
+
+    def destroy
+        @chef = Chef.find(params[:id])
+        @chef.destroy
+        flash[:danger] = "Chef and all associate recipes have been deleted"
+        redirect_to chefs_path
+    end
     
     private
       
