@@ -7,6 +7,7 @@ class RecipeDeleteTest < ActionDispatch::IntegrationTest
     end
 
     test "Successfully delete a recipe" do
+        sing_up_as(@chef, "password")
         get recipe_path(@recipe)
         assert_template "recipes/show"
         assert_select "a{href=?]", recipe_path(@recipe), text: "Delete this recipe"

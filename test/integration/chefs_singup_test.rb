@@ -6,23 +6,27 @@ class ChefsSingupTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "reject invalid signup" do
+  test "reject an invalid signup" do
     get signup_path
     assert_no_difference "Chef.count" do
-        post.chefs_path, params{chef: {chef_name: " ", email: " ", password: "password", password_cofirmation: " "}}
+      post chefs_path, params: { chef: { chefname: " ", 
+                                 email: " ", password: "password",
+                                    password_confirmation: " " } }
     end
-    assert_template "chefs/new"
-
+    assert_template 'chefs/new'
+    assert_select 'h2.panel-title'
+    assert_select 'div.panel-body'
   end
-
-  test "acept valid signup" do
+  
+  test "accept valid signup" do
     get signup_path
     assert_difference "Chef.count", 1 do
-        post.chefs_path, params{chef: {chef_name: "alejandro", email: "alejandro@correo.com",
-                                    password: "password", password_cofirmation: "password"}}
+      post chefs_path, params: { chef: { chefname: "alejandro", 
+                email: "alejandro@correo.com", password: "password",
+                              password_confirmation: "password" } }
     end
     follow_redirect!
-    assert_template "chefs/show"
+    assert_template 'chefs/show'
     assert_not flash.empty?
   end
 end

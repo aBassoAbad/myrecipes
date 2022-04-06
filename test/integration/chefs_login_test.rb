@@ -10,6 +10,8 @@ class ChefsLoginTest < ActionDispatch::IntegrationTest
         post login_path, params: {session: {email: " ", password: " "}}
         assert_template "sessions/new"
         assert_not flash.empty?
+        assert.select "a[href=?]", login_path
+        assert.select "a[href=?]", logout_path, count: 0
         get root_path
         assert flash.empty?
     end
@@ -22,5 +24,9 @@ class ChefsLoginTest < ActionDispatch::IntegrationTest
         follow_redirect!
         assert_template "chefs/show"
         assert_not flash.empty!
+        assert.select "a[href=?]", login_path, count: 0
+        assert.select "a[href=?]", logout_path
+        assert.select "a[href=?]", chef_path(@chef)
+        assert.select "a[href=?]", edit_chef_path(@chef)
     end
 end

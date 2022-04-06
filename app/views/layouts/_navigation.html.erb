@@ -12,9 +12,11 @@
         <li class="nav-item">
         <%= link_to "Recipe list", recipes_path, class: "nav-link" %>
         </li>
+        <% if logged_in?%>
         <li class="nav-item">
         <%= link_to "Create new recipe", new_recipe_path, class: "nav-link" %>
         </li>
+        <% end %>
         <li class="nav-item">
         <%= link_to "Chefs", chefs_path, class: "nav-link" %>
         </li>
