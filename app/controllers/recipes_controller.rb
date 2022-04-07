@@ -8,6 +8,8 @@ class RecipesController < ApplicationController
     end
 
     def show
+        @comment = Comment.new
+        @comments = @recipe.comments.page(params[:page]).per(2)
     end
 
     def new

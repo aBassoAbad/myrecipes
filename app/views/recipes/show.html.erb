@@ -32,3 +32,33 @@
     <%= link_to "Return to recipe listing", recipes_path, class: "btn btn-xs btn-primary" %>
   </div>
 </div>
+
+<% if logged_in? %>
+    <div class="row">
+    <div class="col-md-18 col-md-offset-2">
+        <h3>Comments: </h3><hr/>
+        <%= form_for([@recipe, @comment], :html => {class: "form-horizontal", role: "form"}) do |f| %>
+        <div class="form-group">
+            <div class="control-label col-md-2">
+            <%= f.label :description, "Comment" %>
+            </div>
+            <div class="col-md-12">
+            <%= f.text_area :description, rows: 8, class: "form-control", placeholder: "Enter comment here" %>
+            </div>
+        </div>
+        <div class="form-group center">
+            <%= f.submit "Submit comment", class: "btn btn-primary btn-lg btn-xlarge" %>
+        </div>
+        <% end %>
+    </div>
+    </div>
+<% end %>
+
+<% if @recipe.comments.count != 0 %>
+      <h3>Prior Comments: </h3>
+        <div id="messages">
+          <%= render partial: 'comments/comments', object: @comments %>
+  </div>
+<% else %>
+      <h3>No Comments Yet!</h3>
+<% end %>
