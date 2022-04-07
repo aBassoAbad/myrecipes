@@ -20,6 +20,24 @@
         <li class="nav-item">
         <%= link_to "Chefs", chefs_path, class: "nav-link" %>
         </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Ingredients
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><%= link_to "Available ingredients", 
+                                    ingredients_path, class: "dropdown-item" %></li>
+            <li><hr class="dropdown-divider"></li>
+             <% Ingredient.all.each do |ingredient| %>
+                <li><%= link_to ingredient.name.capitalize, 
+                                    ingredient_path(ingredient), class: "dropdown-item" %></li>
+            <% end %>
+            <% if logged_in? && current_chef.admin? %>
+            <li><hr class="dropdown-divider"></li>
+            <li><%= link_to "Create ingredient", new_ingredient_path, class: "dropdown-item"%></li>
+            <% end %>
+          </ul>
+        </li>
       </ul>
       <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
