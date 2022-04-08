@@ -1,6 +1,6 @@
 import consumer from "./consumer"
 
-consumer.subscriptions.create("CommentsChannel", {
+consumer.subscriptions.create("ChatroomChannel", {
   connected() {
     // Called when the subscription is ready for use on the server
   },
@@ -10,7 +10,11 @@ consumer.subscriptions.create("CommentsChannel", {
   },
 
   received(data) {
-    // Called when there's incoming data on the websocket for this channel
-    $("#messages .comment-fix:first").prepend(data)
+    $('#messages').append(data['message'])
+    $('#message_content').val('')
+    scrollToBottom()
+    $( document ).on('turbolinks:load', function() {
+        scrollToBottom()
+      })
   }
 });
