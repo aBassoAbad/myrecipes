@@ -72,6 +72,6 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   # Uncomment if you wish to allow Action Cable access from any origin.
-  # config.action_cable.disable_request_forgery_protection = true
+  config.action_cable.disable_request_forgery_protection = true
   config.hosts << "port-3000-ruby-alejandrobassoabaddam805477.preview.codeanywhere.com"
 end

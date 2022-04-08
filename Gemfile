@@ -30,6 +30,16 @@ gem 'kaminari'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'jquery-rails'
 
+# this needs to be outside of assets or it will fail on Heroku
+gem 'bootstrap-sass'
+
+# Gems used only for assets and not required in production environments by default.
+group :assets do
+  gem 'coffee-rails'
+  gem 'uglifier', '>= 1.0.3'
+end
+
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
