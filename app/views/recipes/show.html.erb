@@ -5,8 +5,9 @@
     <hr/>
     <div class="center">
     <%= simple_format(@recipe.description) %>
-
-    <%= image_tag url_for(@recipe.image), class: "center" %>
+    <% if @recipe.image.attached? %>
+        <%= image_tag url_for(@recipe.image), class: "center" %> 
+    <% end %>
     <% if @recipe.ingredients.any? %>
         <p>Ingredients: <%= render @recipe.ingredients %></p>
     <% end %>
