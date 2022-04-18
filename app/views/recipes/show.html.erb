@@ -3,11 +3,14 @@
   <div class="card-body">
     <h4 class="center description"><strong>Steps: </strong></h4>
     <hr/>
+    <div class="center">
     <%= simple_format(@recipe.description) %>
 
+    <%= image_tag url_for(@recipe.image), class: "center" %>
     <% if @recipe.ingredients.any? %>
         <p>Ingredients: <%= render @recipe.ingredients %></p>
     <% end %>
+    </div>
     <hr/>
     <div class="text-rigth">
         <p class="center"><em>Created by: </em></p>

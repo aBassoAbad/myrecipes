@@ -8,7 +8,8 @@ class Recipe < ApplicationRecord
     has_many :ingredients, through: :recipe_ingredients
     has_many :comments, dependent: :destroy
     has_many :likes, dependent: :destroy
-
+    has_one_attached :image
+    
     def thumbs_up_total
         Likes.where(like: true, recipe: self).size
     end
