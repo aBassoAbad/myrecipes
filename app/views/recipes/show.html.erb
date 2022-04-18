@@ -17,6 +17,15 @@
         <p class="center">
             <small><%= @recipe.chef.chef_name.capitalize %></small>
         </p>
+
+        <p class="center">
+            <%= link_to like_recipe_path(@recipe, like: true), method: :post, class: "link" do %>
+            <i class="fa-solid fa-thumbs-up"></i>
+            <% end %> <%= @recipe.thumbs_up_total %> || 
+            <%= link_to like_recipe_path(@recipe, like: false), method: :post, class: "link" do %>
+            <i class="fa-solid fa-thumbs-down"></i><%= @recipe.thumbs_down_total %>
+            <% end %>
+        </p>
     </div>
     <p>
         <div class="text-right">Created <%= time_ago_in_words(@recipe.created_at) %> ago</div>

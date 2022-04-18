@@ -1,7 +1,8 @@
 class RecipesController < ApplicationController
-    before_action :set_recipe, only: [:show, :edit, :update]
-    before_action :require_user, except: [:index, :show]
+    before_action :set_recipe, only: [:show, :edit, :update, :destroy, :like]
+    before_action :require_user, except: [:index, :show, :like]
     before_action :require_same_user, only: [:edit, :update, :destroy]
+    before_action :require_user_like, only: [:like]
 
     def index 
         @recipes = Recipe.page(params[:page]).per(2)
@@ -43,7 +44,18 @@ class RecipesController < ApplicationController
         Recipe.find(params[:id]).destroy
         flash[:success] = "Recipe deleted successfully"
         redirect_to recipes_path
-      end
+    end
+
+    def like
+        like = Likes.create(like: params[:like], chef: current_chef, recipe: @recipe)
+        if like.valid?
+          flash[:success] = "Your selection was succesful"
+          redirect_back(fallback_location: root_path)
+        else
+          flash[:danger] = "You can only like/dislike a recipe once"
+          redirect_back(fallback_location: root_path)
+        end
+    end
 
     private
         def set_recipe 
@@ -58,6 +70,13 @@ class RecipesController < ApplicationController
             if current_chef != @recipe.chef and !current_chef.admin?
                 flash[:alert] = "You can only edit or destroy your own recipes"
                 redirect_to recipes_path
+            end
+        end
+
+        def require_user_like
+            if !logged_in?
+              flash[:danger] = "You must be logged in to perform that action"
+              redirect_back(fallback_location: root_path)
             end
         end
 end

@@ -3,8 +3,11 @@ Rails.application.routes.draw do
     get "pages/home", to: "pages#home"
 
     resources :recipes do
-        resource :comments, only: [:create]
-    end
+        resources :comments, only: [:create]
+        member do 
+          post 'like'
+        end
+      end
 
     get "/signup", to: "chefs#new"
     resources :chefs, except: [:new]

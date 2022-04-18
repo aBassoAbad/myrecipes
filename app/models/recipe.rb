@@ -7,4 +7,13 @@ class Recipe < ApplicationRecord
     has_many :recipe_ingredients
     has_many :ingredients, through: :recipe_ingredients
     has_many :comments, dependent: :destroy
+    has_many :likes, dependent: :destroy
+
+    def thumbs_up_total
+        Likes.where(like: true, recipe: self).size
+    end
+    
+    def thumbs_down_total
+        Likes.where(like: false, recipe: self).size   
+    end
 end
