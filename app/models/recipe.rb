@@ -11,10 +11,10 @@ class Recipe < ApplicationRecord
     has_one_attached :image
     
     def thumbs_up_total
-        Likes.where(like: true, recipe: self).size
+        Like.where(like: true, recipe: self).size
     end
     
     def thumbs_down_total
-        Likes.where(like: false, recipe: self).size   
+        Like.where(like: false, recipe: self).size   
     end
 end

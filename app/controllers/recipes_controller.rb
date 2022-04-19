@@ -47,7 +47,7 @@ class RecipesController < ApplicationController
     end
 
     def like
-        like = Likes.create(like: params[:like], chef: current_chef, recipe: @recipe)
+        like = Like.create(like: params[:like], chef: current_chef, recipe: @recipe)
         if like.valid?
           flash[:success] = "Your selection was succesful"
           redirect_back(fallback_location: root_path)
