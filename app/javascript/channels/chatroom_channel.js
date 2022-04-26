@@ -11,7 +11,7 @@ consumer.subscriptions.create("ChatroomChannel", {
 
   received(data) {
     $('#messages').append(data['message'])
-    $('#message_content').val('')
+    $('#message_content').val('prueba')
     scrollToBottom()
     $( document ).on('turbolinks:load', function() {
         scrollToBottom()
